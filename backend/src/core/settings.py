@@ -1,4 +1,5 @@
 import os
+import sys
 from pathlib import Path
 
 from dotenv.main import load_dotenv
@@ -55,6 +56,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": ":memory:" if "test" in sys.argv else "dummy.db",
+    }
+}
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -100,3 +108,6 @@ CACHES = {
 }
 
 GITHUB_API_URL = os.getenv("GITHUB_API_URL")
+
+if SUPPORTED_SEARCH_TYPES := os.getenv("SUPPORTED_SEARCH_TYPES"):
+    SUPPORTED_SEARCH_TYPES = SUPPORTED_SEARCH_TYPES.split(",")
