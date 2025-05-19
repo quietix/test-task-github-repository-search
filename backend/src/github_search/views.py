@@ -1,6 +1,12 @@
 from django.conf import settings
 from django.core.cache import cache
 
+from drf_spectacular.utils import (
+    extend_schema,
+    OpenApiParameter,
+    OpenApiExample,
+)
+
 from rest_framework.decorators import api_view
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -17,6 +23,23 @@ from urllib.parse import urlencode
 CACHE_TIMEOUT_SECONDS = 60 * 60 * 2
 
 
+@extend_schema(
+    methods=["POST"],
+    description="Search GitHub for users, repositories, or issues.",
+    parameters=[
+        OpenApiParameter(
+            name="search_type",
+            required=True,
+            type=str,
+            description="Search type: 'users', 'repositories', or 'issues'",
+        ),
+        OpenApiParameter(
+            name="search_text", required=True, type=str, description="Search query"
+        ),
+    ],
+    responses={200: OpenApiExample("Success", value={"items": []})},
+    tags=["GitHub Search"],
+)
 @api_view(["POST"])
 def github_search(request: Request) -> Response:
     search_type = request.query_params.get("search_type")
@@ -55,6 +78,12 @@ def github_search(request: Request) -> Response:
     return Response(data)
 
 
+@extend_schema(
+    methods=["POST"],
+    description="Clear all backend cache (Redis).",
+    responses={200: OpenApiExample("Cache Cleared", value={"detail": "Cache cleared"})},
+    tags=["Cache"],
+)
 @api_view(["POST"])
 def clear_cache(request: Request) -> Response:
     cache.clear()
