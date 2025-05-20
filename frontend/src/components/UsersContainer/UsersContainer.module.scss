@@ -1,0 +1,59 @@
+.users-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-start;
+
+  .user-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 220px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 100%;
+      text-decoration: none;
+      color: #0366d6;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      font-size: 1.15rem;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 0.5rem;
+      object-fit: cover;
+    }
+
+    .username {
+      flex-grow: 1;
+      max-width: calc(100% - 90px);
+      text-align: center;
+      overflow-wrap: break-word;
+      white-space: normal;
+    }
+
+    .user-details {
+      list-style: none;
+      text-align: left;
+      font-size: 0.85rem;
+      width: 100%;
+    }
+  }
+}

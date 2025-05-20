@@ -1,0 +1,78 @@
+.issues-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .issue-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #fafafa;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.01);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .title {
+        font-weight: bold;
+        font-size: 1rem;
+        color: #0366d6;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+  
+      .state {
+        font-size: 0.9rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        background-color: #e1e4e8;
+        text-transform: capitalize;
+      }
+    }
+
+    .body {
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    .footer {
+      margin-top: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+
+      .user {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #24292e;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+        .avatar {
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+        }
+      }
+  
+      .date {
+        color: #666;
+      }
+    }
+  }
+}

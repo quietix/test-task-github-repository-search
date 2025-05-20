@@ -1,0 +1,39 @@
+.app-container {
+  margin: 3rem 4rem 0 4rem;
+
+  .error-text {
+    color: red;
+  }
+
+  .info-container {
+    display: flex;
+    align-items: center;
+    height: 2.5rem;
+    gap: 1rem;
+
+    .logo {
+      height: 100%;
+    }
+
+    .label-container {
+      display: flex;
+      flex-direction: column;
+
+      .title {
+        font-weight: 700;
+      }
+
+      .description {
+        font-size: 0.875rem;
+        color: var(--soft-gray-color);
+      }
+    }
+  }
+
+  .search-area {
+    display: flex;
+    margin: 1rem 0 1rem 0;
+    gap: 0.8rem;
+    height: 2.5rem;  
+  }
+}

@@ -1,0 +1,9 @@
+.search-input {
+  padding-left: 1rem;
+  border: 1px solid var(--light-gray-color);
+  width: 22rem;
+
+  &::placeholder {
+    color: var(--dark-gray-color);
+  }
+}
