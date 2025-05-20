@@ -7,6 +7,19 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
+      db:
+        image: postgres:14
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: github_actions
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready 
+          --health-interval 10s 
+          --health-timeout 5s 
+          --health-retries 5
+
       redis:
         image: redis
         ports:
@@ -45,7 +58,7 @@ jobs:
         GITHUB_BASE_API_URL: https://api.github.com
         SUPPORTED_SEARCH_TYPES: users,repositories,issues
         REDIS_URL: redis://localhost:6379/0
-        DB_NAME: github_actions
-        DB_USER_NAME: postgres
-        DB_USER_PASSWORD: postgres
+        POSTGRES_DB: github_actions
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
         DB_HOST: localhost

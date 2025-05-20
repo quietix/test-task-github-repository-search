@@ -1,5 +1,4 @@
 import os
-import sys
 from pathlib import Path
 
 from dotenv.main import load_dotenv
