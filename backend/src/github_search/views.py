@@ -17,6 +17,7 @@ import requests
 from requests.exceptions import HTTPError
 
 from urllib.parse import urlencode
+from .github_service import search_for_github_data
 
 
 # 2 hours
@@ -59,20 +60,8 @@ def github_search(request: Request) -> Response:
     if cached_result:
         return Response(cached_result)
 
-    github_api_url = getattr(settings, "GITHUB_API_URL", None)
-    if not github_api_url:
-        raise APIException("Failed to retrieve GitHub API url")
+    data = search_for_github_data(search_type, search_text)
 
-    params = {"q": search_text}
-    github_request_url = f"{github_api_url}/{search_type}?{urlencode(params)}"
-
-    try:
-        response = requests.get(github_request_url)
-        response.raise_for_status()
-    except HTTPError as e:
-        raise APIException(f"GitHub API error: {e}")
-
-    data = response.json()
     cache.set(cache_key, data, timeout=CACHE_TIMEOUT_SECONDS)
 
     return Response(data)
