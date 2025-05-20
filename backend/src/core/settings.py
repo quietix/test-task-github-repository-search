@@ -26,9 +26,11 @@ INSTALLED_APPS = [
     "rest_framework",
     "github_search",
     "drf_spectacular",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -109,7 +111,9 @@ CACHES = {
     }
 }
 
-GITHUB_API_URL = os.getenv("GITHUB_API_URL")
+GITHUB_BASE_API_URL = os.getenv("GITHUB_BASE_API_URL")
 
 if SUPPORTED_SEARCH_TYPES := os.getenv("SUPPORTED_SEARCH_TYPES"):
     SUPPORTED_SEARCH_TYPES = SUPPORTED_SEARCH_TYPES.split(",")
+
+CORS_ALLOW_ALL_ORIGINS = True
