@@ -1,6 +1,7 @@
 import requests
-from requests.exceptions import HTTPError 
+from requests.exceptions import HTTPError
 from django.conf import settings
+from rest_framework.exceptions import APIException
 
 
 GITHUB_BASE_API_URL = getattr(settings, "GITHUB_BASE_API_URL", None)

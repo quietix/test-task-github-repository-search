@@ -10,13 +10,9 @@ from drf_spectacular.utils import (
 from rest_framework.decorators import api_view
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework.exceptions import ValidationError, APIException
+from rest_framework.exceptions import ValidationError
 from rest_framework import status
 
-import requests
-from requests.exceptions import HTTPError
-
-from urllib.parse import urlencode
 from .github_service import search_for_github_data
 
 
