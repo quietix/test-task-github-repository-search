@@ -19,8 +19,8 @@ export function useSearch() {
   };
 
   const fetchResults = async (searchText: string, searchType: SearchType) => {
-    clearResults();
     setLoading(true);
+    clearResults();
     setError(null);
 
     const key = `${searchType}:${searchText}`;
