@@ -5,11 +5,21 @@ services:
       context: ./backend
     depends_on:
       - redis
+      - db
     ports:
       - "8000:8000"
     env_file:
       - ./backend/.env
 
+  db:
+    container_name: db-container
+    restart: always
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./backend/.env
+    
   redis:
     container_name: redis-container
     restart: always
@@ -22,8 +32,11 @@ services:
     build:
       context: ./frontend
     env_file:
-    - ./frontend/.env
+      - ./frontend/.env
     ports:
       - "3000:80"
     depends_on:
       - backend
+
+volumes:
+  postgres_data:

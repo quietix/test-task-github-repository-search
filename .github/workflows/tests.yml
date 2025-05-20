@@ -45,3 +45,7 @@ jobs:
         GITHUB_BASE_API_URL: https://api.github.com
         SUPPORTED_SEARCH_TYPES: users,repositories,issues
         REDIS_URL: redis://localhost:6379/0
+        DB_NAME: github_actions
+        DB_USER_NAME: postgres
+        DB_USER_PASSWORD: postgres
+        DB_HOST: localhost
