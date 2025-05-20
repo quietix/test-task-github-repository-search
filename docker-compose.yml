@@ -1,0 +1,29 @@
+services:
+  backend:
+    container_name: backend-container
+    build:
+      context: ./backend
+    depends_on:
+      - redis
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env
+
+  redis:
+    container_name: redis-container
+    restart: always
+    image: redis:latest
+    expose:
+      - "6379"
+
+  frontend:
+    container_name: frontend-container
+    build:
+      context: ./frontend
+    env_file:
+    - ./frontend/.env
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
