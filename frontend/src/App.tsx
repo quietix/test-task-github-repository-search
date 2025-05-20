@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import debounce from "lodash/debounce";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Dropdown from "./components/Dropdown/Dropdown";
@@ -66,7 +66,7 @@ function App() {
         </div>
       </div>
       <div className={styles["search-area"]}>
-        <SearchBar query={query} setQuery={setQuery} />
+        <SearchBar setQuery={setQuery} />
         <Dropdown setSearchType={setSearchType} />
       </div>
 
