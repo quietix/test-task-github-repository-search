@@ -11,6 +11,11 @@ Table of contents:
     - [Criteria](#criteria)
     - [How to submit your work](#how-to-submit-your-work)
 2. [Solution description](#solution-description)
+    - [Stack Used](#-stack-used)
+    - [Key Features](#-key-features)
+        - [Frontend](#frontend)
+        - [Backend](#backend)
+    - [Running Locally](#running-locally)
 
 
 ## Task description
@@ -76,3 +81,51 @@ Create a public repo on GitHub and push your code on it then share the link back
 
 ## Solution description
 
+This solution implements a fullstack GitHub repository search application using **React.js**, **Django REST Framework**, **Redis**, and **Docker**. It fulfills all the requirements outlined in the task description, with several enhancements for performance, usability, and maintainability.
+
+### Stack Used
+
+- **Frontend**:
+  - React.js with TypeScript
+  - Sass for styling
+  - Redux with redux-persist for global state management and caching
+  - `lodash.debounce` for input debouncing
+
+- **Backend**:
+  - Django with Django REST Framework
+  - Redis for caching GitHub API results
+  - `requests` for consuming GitHub’s public API
+  - DRF-Spectacular for Swagger documentation
+  - Unit tests with `Pytest`
+
+- **DevOps**:
+  - Docker and docker-compose for isolated development and deployment
+  - Nginx to serve frontend
+
+### Key Features
+
+#### Frontend
+- **Responsive UI** with a clean and centered initial state
+- **Debounced search input** (minimum 3 characters) to avoid excessive backend calls
+- **Cached results** in Redux (persisted) to avoid unnecessary requests
+- **User feedback** for all application states: initial, loading, error, empty
+
+#### Backend
+- **Two API endpoints**:
+  - `POST /api/search/`: Accepts `search_type` and `search_text` and returns cached or fresh data from GitHub
+  - `POST /api/clear-cache/`: Clears Redis cache manually
+- **Caching logic**:
+  - Results are cached using Redis with a TTL of **2 hours**
+  - Cached key is based on a combination of `search_type` and `search_text`
+- **Error handling** for failed GitHub requests or malformed input
+- **Swagger documentation** available at `/api/docs/`
+- **Unit tests** for search logic
+
+### Running Locally
+
+1. Clone the repository
+2. Add a `.env` file in both `frontend/` and `backend/` directories with necessary configuration
+3. Start the project with:
+
+```bash
+docker-compose up --build
