@@ -8,9 +8,9 @@ interface ReposContainerProps {
 function RepoContainer({ repos }: ReposContainerProps) {
   return (
     <div className={styles["repos-container"]}>
-      {repos.map((repo) => (
+      {repos.map((repo: Repository) => (
         <div key={repo.id} className={styles["repo-card"]}>
-          {repo.owner ? (
+          {repo.owner && (
             <a
               href={repo.html_url}
               target="_blank"
@@ -28,7 +28,7 @@ function RepoContainer({ repos }: ReposContainerProps) {
                 <p className={styles["owner-login"]}>by {repo.owner.login}</p>
               </div>
             </a>
-          ) : null}
+          )}
           <ul className={styles["repo-stats"]}>
             <li className={styles["stars"]}>Stars: {repo.stargazers_count}</li>
             <li className={styles["forks"]}>Forks: {repo.forks_count}</li>

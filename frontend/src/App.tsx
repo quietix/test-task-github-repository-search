@@ -13,10 +13,11 @@ function App() {
   const [query, setQuery] = useState("");
   const [searchType, setSearchType] = useState<SearchType>("users");
   const { results, loading, error, fetchResults, clearResults } = useSearch();
+  const minDebounceChars = 3;
 
   useEffect(() => {
     const debouncedFetch = debounce((q: string, type: SearchType) => {
-      if (q.length >= 3) {
+      if (q.length >= minDebounceChars) {
         fetchResults(q, type);
       } else {
         clearResults();
@@ -34,7 +35,7 @@ function App() {
     if (loading) return <p>Loading...</p>;
     if (error) return <p className={styles["error-text"]}>{error}</p>;
 
-    if (query.length > 3 && results.length > 0) {
+    if (query.length > minDebounceChars && results.length > 0) {
       switch (searchType) {
         case "users":
           return <UserContainer users={results} />;
@@ -45,7 +46,7 @@ function App() {
         default:
           return null;
       }
-    } else if (query.length > 3) {
+    } else if (query.length > minDebounceChars) {
       return <p>No results found.</p>;
     }
   };

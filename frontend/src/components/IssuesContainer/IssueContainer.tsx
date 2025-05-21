@@ -26,7 +26,7 @@ function IssuesContainer({ issues }: IssuesContainerProps) {
             {issue.body?.slice(0, 150) || "No description."}
           </div>
 
-          {issue.user ? (
+          {issue.user && (
             <div className={styles["footer"]}>
               <a
                 href={issue.user.html_url}
@@ -44,7 +44,7 @@ function IssuesContainer({ issues }: IssuesContainerProps) {
                 Created: {new Date(issue.created_at).toLocaleDateString()}
               </span>
             </div>
-          ) : null}
+          )}
         </div>
       ))}
     </div>

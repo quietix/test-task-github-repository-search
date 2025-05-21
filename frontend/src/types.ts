@@ -1,42 +1,37 @@
 export type SearchType = "users" | "repositories" | "issues";
 
-export type User = {
-  login: string;
-  html_url: string;
-  avatar_url: string;
-  type: string;
-  score: number;
-  url: string;
+type BaseUser = {
+  readonly login: string;
+  readonly html_url: string;
+  readonly avatar_url: string;
+};
+
+export type User = BaseUser & {
+  readonly type: string;
+  readonly score: number;
+  readonly url: string;
 };
 
 export type Repository = {
-  id: number;
-  name: string;
-  full_name: string;
-  html_url: string;
-  owner: {
-    login: string;
-    avatar_url: string;
-    html_url: string;
-  };
-  stargazers_count: number;
-  forks_count: number;
-  open_issues_count: number;
-  language: string | null;
+  readonly id: number;
+  readonly name: string;
+  readonly full_name: string;
+  readonly html_url: string;
+  readonly owner: BaseUser;
+  readonly stargazers_count: number;
+  readonly forks_count: number;
+  readonly open_issues_count: number;
+  readonly language: string | null;
 };
 
 export interface Issue {
-  id: number;
-  number: number;
-  title: string;
-  html_url: string;
-  body: string;
-  state: string;
-  created_at: string;
-  updated_at: string;
-  user: {
-    login: string;
-    avatar_url: string;
-    html_url: string;
-  };
+  readonly id: number;
+  readonly number: number;
+  readonly title: string;
+  readonly html_url: string;
+  readonly body: string;
+  readonly state: string;
+  readonly created_at: string;
+  readonly updated_at: string;
+  readonly user: BaseUser;
 }

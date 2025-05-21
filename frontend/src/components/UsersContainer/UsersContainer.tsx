@@ -8,7 +8,7 @@ interface UsersContainerProps {
 function UsersContainer({ users }: UsersContainerProps) {
   return (
     <div className={styles["users-container"]}>
-      {users.map((user) => (
+      {users.map((user: User) => (
         <div key={user.login} className={styles["user-card"]}>
           <a
             href={user.html_url}
